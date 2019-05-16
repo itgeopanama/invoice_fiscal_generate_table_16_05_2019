@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_inv_gen_fiscal" model="ir.ui.view">
+            <field name="name">account.invoice.gen.fiscal</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//notebook//page//group//group//field[@name='name']" position="after">
+					<field name="fiscal_header" readonly="1"/>
+				</xpath>
+            </field>
+        </record>
+		
+		<record id="fiscal_header_form" model="ir.ui.view">
+            <field name="name">account.invoice.gen.fiscal.header</field>
+            <field name="model">fiscal.header</field>
+            <field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="invoice_date"/>
+								<field name="seller"/>
+								<field name="customer_code"/>
+								<field name="customer_name"/>
+								<field name="transaction_type"/>
+								<field name="ruc"/>
+								<field name="company_id"/>
+								<field name="sub_total"/>
+							</group>
+							<group>
+								<field name="invoice_number"/>
+								<field name="fisc_sequence"/>
+								<field name="ref"/>
+								<field name="tax"/>
+								<field name="sell_term"/>
+								<field name="printed"/>
+								<field name="total"/>
+							</group>
+						</group>
+						<field name="fiscal_details" widget="one2many_list">
+							<tree>
+								<field name="item_code"/>
+								<field name="item_desc"/>
+								<field name="quantity"/>
+								<field name="unit_price"/>
+								<field name="tax"/>
+								<field name="discount"/>
+								<field name="total_amount"/>
+							</tree>
+						</field>
+					</sheet>
+				</form>
+            </field>
+        </record>
+    </data>
+</odoo>
